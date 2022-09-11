@@ -14,7 +14,7 @@ public class CameraCenteralized : MonoBehaviour
     [SerializeField] float YMax = 85.0f;
 
     [SerializeField] float m_Distance = 7.0f;
-    [SerializeField] float m_RotationSpeed = 100.0f;
+    [SerializeField] float m_Sensitivity = 100.0f;
     [SerializeField] float m_DampingSpeed = 0.1f;
 
     private Vector3 m_Offset;
@@ -34,14 +34,14 @@ public class CameraCenteralized : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            m_Offset.x += Input.GetAxis("Mouse X") * m_RotationSpeed * Time.deltaTime;
-            m_Offset.y += Input.GetAxis("Mouse Y") * m_RotationSpeed * Time.deltaTime;
+            m_Offset.x += Input.GetAxis("Mouse X") * m_Sensitivity * Time.deltaTime;
+            m_Offset.y += Input.GetAxis("Mouse Y") * m_Sensitivity * Time.deltaTime;
             m_Offset.y = Mathf.Clamp(m_Offset.y, YMin, YMax);
         }
             
         /* This doesn't work :(
-        transform.RotateAround(POI.transform.position, Vector3.up, m_Offset.x * m_RotationSpeed * Time.deltaTime);
-        transform.RotateAround(POI.transform.position, Vector3.right, m_Offset.y * m_RotationSpeed * Time.deltaTime);
+        transform.RotateAround(POI.transform.position, Vector3.up, m_Offset.x * m_Sensitivity * Time.deltaTime);
+        transform.RotateAround(POI.transform.position, Vector3.right, m_Offset.y * m_Sensitivity * Time.deltaTime);
             
         Vector3 LookTowards = POI.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(LookTowards);
